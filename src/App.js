@@ -8,10 +8,13 @@ import Loading from "./Loading";
 import AuthorsList from "./AuthorsList";
 import AuthorDetail from "./AuthorDetail";
 import BookList from "./BookList";
+import Login from "./Login";
+import SignUp from "./SignUp";
 
 // Store
 import authorStore from "./stores/AuthorStore";
 import bookStore from "./stores/BookStore";
+import authStore from "./stores/authStore";
 
 class App extends Component {
   getView() {
@@ -19,12 +22,16 @@ class App extends Component {
       return <Loading />;
     } else {
       return (
-        <Switch>
-          <Redirect exact from="/" to="/authors" />
-          <Route path="/authors/:authorID" component={AuthorDetail} />
-          <Route path="/authors/" component={AuthorsList} />
-          <Route path="/books/:bookColor?" component={BookList} />
-        </Switch>
+        <div>
+          <Switch>
+            <Redirect exact from="/" to="/authors" />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/login" component={Login} />
+            <Route path="/authors/:authorID" component={AuthorDetail} />
+            <Route path="/authors/" component={AuthorsList} />
+            <Route path="/books/:bookColor?" component={BookList} />
+          </Switch>
+        </div>
       );
     }
   }

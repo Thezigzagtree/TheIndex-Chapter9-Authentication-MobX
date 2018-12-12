@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+
+import authStore from "./stores/authStore";
 
 // Logo
 import logo from "./assets/theindex.svg";
@@ -17,6 +19,16 @@ class Sidebar extends Component {
             <NavLink to="/books">BOOKS</NavLink>
           </h4>
         </section>
+        {!authStore.user && (
+          <button className="btn btn-light">
+            <Link to="/SignUp">SIGN UP</Link>
+          </button>
+        )}
+        {!authStore.user && (
+          <button className="btn btn-light">
+            <Link to="/Login">Login</Link>
+          </button>
+        )}
       </div>
     );
   }
