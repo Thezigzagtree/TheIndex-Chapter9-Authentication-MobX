@@ -21,12 +21,12 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    authStore.login(this.state);
+    authStore.login(this.state, this.props.history);
   }
 
   render() {
     const { username, password } = this.state;
-
+    authStore.user && this.props.history.push("/");
     return (
       <div className="col-6 mx-auto">
         <div className="card my-5">

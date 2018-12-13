@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { observer } from "mobx-react";
 
 import authStore from "./stores/authStore";
 
@@ -24,9 +25,13 @@ class Sidebar extends Component {
             <Link to="/SignUp">SIGN UP</Link>
           </button>
         )}
-        {!authStore.user && (
+        {!authStore.user ? (
           <button className="btn btn-light">
             <Link to="/Login">Login</Link>
+          </button>
+        ) : (
+          <button className="btn btn-danger" onClick={() => authStore.logout()}>
+            Logout {authStore.user.username}
           </button>
         )}
       </div>
@@ -34,4 +39,4 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+export default observer(Sidebar);
